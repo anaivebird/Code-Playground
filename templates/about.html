@@ -1,0 +1,189 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>About</title>
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary JavaScript plugins) -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Game Box  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+</head>
+<body>
+<!-- header -->
+<div class="top-banner">
+	<div class="header">
+		 <div class="container">
+			 <div class="headr-left">
+				 <div class="social">							
+						<a href="#"><i class="facebook"></i></a>
+						<a href="#"><i class="twitter"></i></a>
+						<a href="#"><i class="gplus"></i></a>	
+						<a href="#"><i class="pin"></i></a>	
+						<a href="#"><i class="youtube"></i></a>	
+				 </div>
+				 <div class="search">
+					 <form>
+						 <input type="submit" value="">
+						 <input type="text" value="" placeholder="Search...">					 
+					 </form>
+				 </div>
+				 <div class="clearfix"></div>
+			 </div>
+			 <div class="headr-right">
+				 <div class="details">
+					 <ul>
+						 <li><a href="mailto@example.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>www.CodePlayground.com</a></li>
+						 <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+123 456789</li>
+					 </ul>
+				 </div>
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+	</div>
+
+	<!--banner-info-->	
+	<div class="banner-info">
+		  <div class="container">
+			  <div class="logo">
+					 <h1><a href="index.html">Code Playground</a></h1>
+			  </div>
+			 <div class="top-menu">
+				 <span class="menu"></span>
+				  <ul class="nav1">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="active"><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'hot' %}">Hot</a></li>
+          <li><a href="{% url 'games' %}">Games</a></li>
+          <li><a href="{% url 'ai}' %">AI</a></li>
+          {% if request.user.is_authenticated %}
+            <li><a href="#">{{ request.user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+			 </div>	
+	 <!-- script-for-menu -->
+						<script>
+							 $( "span.menu" ).click(function() {
+							$( "ul.nav1" ).slideToggle( 300, function() {
+							// Animation complete.
+								});
+								});
+						</script>
+					<!-- /script-for-menu -->		 
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>
+<!-- banner -->
+<div class="banner">		  			
+		<div class="bnr2">						  
+	   </div>			 
+</div>
+<!-- About -->
+<div class="about">
+	 <div class="container">
+		 <h2>About</h2>
+		 <div class="about-info-grids">
+			 <div class="col-md-5 abt-pic">
+				 <img src="{% static 'images/abt.jpg' %}" class="img-responsive" alt=""/>
+			 </div>
+			 <div class="col-md-7 abt-info-pic">
+				 <h3>Introduction of our team</h3>
+				 <p>Our team is made of college students who major in computer science and software engineering. We all enjoy coding and meantime hope others will like it as we do. Thus we build this website to encourage people do more doing and eventually fall in love with it.</p>
+				 <ul>
+					 <li>You can play the game by writing code.</li>
+					 <li>Your code will be built and then run in the window.</li>
+					 <li>You are allowed to use different programming languages.</li>
+				 </ul>
+			 </div>
+			 <div class="clearfix"></div>
+		 </div>
+		 <div class="testimonals">
+				<h3>What we're trying to do...</h3>
+				<div class="testimonal-grids">
+					 <div class="col-md-4 testimonal-grid">
+						 <div class="testi-info">
+						 <p>"blah  blah blah  blah blah  blah blah  blah "</p>
+						 <h4>Xinyao Shen</h4>
+						 </div>
+					 </div>
+					 <div class="col-md-4 testimonal-grid">
+						 <div class="testi-info">
+						 <p>"blah  blah blah  blah blah  blah blah  blah "</p>
+						 <h4>Yuge Zhang</h4>						 
+						 </div>
+					 </div>
+					 <div class="col-md-4 testimonal-grid">
+						 <div class="testi-info">
+						 <p>"blah  blah blah  blah blah  blah blah  blah "</p>
+						 <h4>Xinwu Hu</h4>
+						 </div>
+					 </div>
+					 <div class="clearfix"></div>
+				</div>
+		   </div>
+	 </div>
+</div>
+<!-- footer -->
+<div class="footer">
+	 <div class="container">
+		 <div class="footer-grids">
+			 <div class="col-md-3 ftr-info">
+				 <h3>About Us</h3>
+				 <p>@ECNU College of Computer Science and Software Engineering
+				 </p><p>All rights reserved.<br />Visit About page to check team information. We sincerely hope you would enjoy this website.</p>
+			 </div>
+			 <div class="col-md-3 ftr-grid">
+				 <h3>Categories</h3>
+				 <ul class="ftr-list">
+					 <li><a href="#">C</a></li>
+					 <li><a href="#">C++</a></li>
+					 <li><a href="#">Javascript</a></li>
+					 <li><a href="#">Python</a></li>
+					 <li><a href="#">Java</a></li>
+				 </ul>				 
+			 </div>
+			 <div class="col-md-3 ftr-grid">
+				 <h3>Platform</h3>
+				 <ul class="ftr-list">
+					 <li><a href="#">Pc</a></li>
+					 <li><a href="#">Ps4</a></li>
+					 <li><a href="#">XBOX 360</a></li>					 
+					 <li><a href="#">XBOX ONE</a></li>
+					 <li><a href="#">PSP</a></li>
+				 </ul>				 
+			 </div>
+			 <div class="col-md-3 ftr-grid">
+				 <h3>Information</h3>
+				 <ul class="ftr-list">	
+					 <li><a href="#">Contact Us</a></li>
+					 <li><a href="#">Wish Lists</a></li>
+					 <li><a href="#">Site Map</a></li>
+					 <li><a href="#">Terms & Conditions</a></li>					 
+				 </ul>				 
+			 </div>		
+			 <div class="clearfix"></div>
+		 </div>
+	 </div>
+</div>
+<div class="copywrite">
+	 <div class="container">
+		 <p></p>
+	 </div>
+</div>
+
+</body>
+</html>

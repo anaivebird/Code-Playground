@@ -1,0 +1,144 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<style type="text/css">
+    .main-div{
+        position: absolute;
+        left: 800px;
+        bottom: 30px;
+    }
+    .main-textarea{
+        height: 250px;
+        width: 400px;
+    }
+</style>
+</head>
+<title>贪吃蛇</title>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<link href="{% static 'css/snake.css' %}" rel='stylesheet' type='text/css' />
+
+<!-- jQuery (necessary JavaScript plugins) -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Game Box  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/board.js' %}"></script>
+<!-- header -->
+<div class="top-banner">
+     <div class="header">
+         <div class="container">
+             <div class="headr-left">
+                 <div class="social">                           
+                        <a href="#"><i class="facebook"></i></a>
+                        <a href="#"><i class="twitter"></i></a>
+                        <a href="#"><i class="gplus"></i></a>   
+                        <a href="#"><i class="pin"></i></a> 
+                        <a href="#"><i class="youtube"></i></a> 
+                 </div>
+                 <div class="search">
+                     <form>
+                         <input type="submit" value="">
+                         <input type="text" value="" placeholder="Search...">                    
+                     </form>
+                 </div>
+                 <div class="clearfix"></div>
+             </div>
+             <div class="headr-right">
+                 <div class="details">
+                     <ul>
+                         <li><a href="mailto@example.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>info(at)example.com</a></li>
+                         <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>(+1)000 123 456789</li>
+                     </ul>
+                 </div>
+             </div>
+             <div class="clearfix"></div>
+         </div>
+    </div>
+
+ <!--banner-info--> 
+     <div class="banner-info">
+          <div class="container">
+              <div class="logo">
+                     <h1><a href="index.html">Code Playground</a></h1>
+              </div>
+             <div class="top-menu">
+                 <span class="menu"></span>
+                    <ul class="nav1">
+                      <li><a href="{% url 'home' %}">Home</a></li>
+                      <li><a href="{% url 'about' %}">About</a></li>
+                      <li ><a href="{% url 'hot' %}">Hot</a></li>
+                      <li><a href="{% url 'games' %}">Games</a></li>
+                      <li class="active"><a href="{% url 'ai' %}">AI</a></li>
+                      {% if request.user.is_authenticated %}
+                        <li><a href="#">{{ request.user.username }}</a></li>
+                        <li><a href="{% url 'logout' %}">Logout</a></li>
+                      {% else %}
+                        <li><a href="{% url 'login' %}">Login</a></li>
+                      {% endif %}
+                    </ul>
+             </div> 
+    <!-- script-for-menu -->
+                        <script>
+                             $( "span.menu" ).click(function() {
+                            $( "ul.nav1" ).slideToggle( 300, function() {
+                            // Animation complete.
+                                });
+                                });
+                        </script>
+                    <!-- /script-for-menu -->        
+             <div class="clearfix"></div>
+         </div>
+    </div>
+</div>
+<!-- banner -->
+<div class="banner">                    
+      <div class="bnr2">                        
+      </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-xs-6 border border-light rounded border-secondary" id="snakepaper">
+    </div>
+    <div class="col-xs-6">
+      <!-- <tesxtarea rows="20" cols="50" id="code" class="form-control"> -->
+      <!--<textarea id="editor" class="my-code-area" rows="25" style="width: 100%"></textarea> -->
+		<pre id="editor">{{ code }}</pre>
+    </div>
+  </div>
+  <div class="row">
+    <button class="btn btn-primary" onclick="submit()">Submit</button>
+  </div>
+</div>
+
+</body>
+</html>
+
+<script type="text/javascript" src="{% static 'js/snake.js' %}"></script>
+
+
+
+<!-- load ace -->
+<script src="{% static 'js/src/ace.js' %}"></script>
+<!-- load ace accessibility extension -->
+<script src="{% static 'js/src/ext-chromevox.js' %}"></script>
+
+<script>
+    // trigger extension
+    ace.require("ace/ext/chromevox");
+    var editor = ace.edit("editor");
+    editor.setOptions({
+    	maxLines: 30
+	});
+    editor.session.setMode("ace/mode/c_cpp");
+    editor.setTheme("ace/theme/tomorrow");
+</script>

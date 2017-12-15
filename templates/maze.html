@@ -1,0 +1,276 @@
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>AI</title>
+<link href="{% static 'css/bootstrap.css' %}" rel='stylesheet' type='text/css' />
+<!-- jQuery (necessary JavaScript plugins) -->
+<script src="{% static 'js/bootstrap.js' %}"></script>
+<!-- Custom Theme files -->
+<link href="{% static 'css/style.css' %}" rel='stylesheet' type='text/css' />
+<!-- Custom Theme files -->
+<!--//theme-style-->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="keywords" content="Game Box  Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+<script src="{% static 'js/jquery.min.js' %}"></script>
+
+</head>
+<body>
+<div class="top-banner">
+    <div class="header">
+         <div class="container">
+             <div class="headr-left">
+                 <div class="social">                           
+                        <a href="#"><i class="facebook"></i></a>
+                        <a href="#"><i class="twitter"></i></a>
+                        <a href="#"><i class="gplus"></i></a>   
+                        <a href="#"><i class="pin"></i></a> 
+                        <a href="#"><i class="youtube"></i></a> 
+                 </div>
+                 <div class="search">
+                     <form>
+                         <input type="submit" value="">
+                         <input type="text" value="" placeholder="Search...">                    
+                     </form>
+                 </div>
+                 <div class="clearfix"></div>
+             </div>
+             <div class="headr-right">
+                 <div class="details">
+                     <ul>
+                         <li><a href="mailto@example.com"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>www.CodePlayground.com</a></li>
+                         <li><span class="glyphicon glyphicon-earphone" aria-hidden="true"></span>+123 456789</li>
+                     </ul>
+                 </div>
+             </div>
+             <div class="clearfix"></div>
+         </div>
+    </div>
+
+    <!--banner-info-->  
+    <div class="banner-info">
+          <div class="container">
+              <div class="logo">
+                     <h1><a href="index.html">Code Playground</a></h1>
+              </div>
+             <div class="top-menu">
+                 <span class="menu"></span>
+                  <ul class="nav1">
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'about' %}">About</a></li>
+          <li><a href="{% url 'hot' %}">Hot</a></li>
+          <li class="active"><a href="{% url 'games' %}">Games</a></li>
+          <li><a href="{% url 'ai' %}">AI</a></li>
+          {% if request.user.is_authenticated %}
+            <li><a href="#">{{ request.user.username }}</a></li>
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'login' %}">Login</a></li>
+          {% endif %}
+        </ul>
+             </div> 
+    <!-- script-for-menu -->
+                        <script>
+                             $( "span.menu" ).click(function() {
+                            $( "ul.nav1" ).slideToggle( 300, function() {
+                            // Animation complete.
+                                });
+                                });
+                        </script>
+                    <!-- /script-for-menu -->        
+             <div class="clearfix"></div>
+         </div>
+    </div>
+</div>
+<!-- banner -->
+<div class="banner">                    
+        <div class="bnr2">                        
+       </div>            
+</div>
+  <div class="about">
+  <div class="container">
+ 
+    <h2>Maze Demo</h2>
+    <div>
+      <p>You are to find a solution to a maze.</p>
+      <p>The first line consists of two integers n, m, which is no more than 100.</p>
+      <p>The following n lines are the map. '*' means walls. '.' means roads.</p>
+      <p>You should output a series of words like "left", "right", "up", "down" to tell the bot how to go from row 1, column 1 to row n, column m.</p>
+    </div>
+
+    <br>
+    <div>
+     <canvas class="col-lg-6" id="myCanvas" width="600" height="600"></canvas>
+    <form method="POST" class="col-lg-6">
+      {% csrf_token %}
+      <div class="form-group">
+        <label for="lang">Language: </label>
+        <select name="lang" class="form-control">
+          <option value="c">C</option>
+          <option value="cpp">C++</option>
+          <option value="java">Java</option>
+          <option value="python">Python</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <textarea name="code" rows="7" class="form-control"></textarea>
+      </div>
+      <button class="btn-primary">Submit</button>
+    </form>
+    </div>
+  </div>
+  </div>
+  
+<script>
+    /******** START OF MOCK *********/
+    var mockData = {
+        /* map format:
+            row[0][0], col[0][0], row[0][1], col[0][1], ..., row[0][m], 
+            col[0][m]
+            ....
+            row[n][0], col[n][0], row[n][1], col[n][1], ...
+        NOTE:
+        * row[i][j]=1 means there is a segment above the cell (i,j)
+        * col[i][j]=1 means there is a segment on the left of (i,j)
+        * The map is a (n*m) map
+        * The mth column and nth row is set up for the simplicity of plotting the addtional border
+        */
+        map: [
+            [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+            [1, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1],
+            [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1],
+            [1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1, 0, 1],
+            [1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1],
+            [1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 1, 1, 1, 0, 1],
+            [1, 1, 1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1],
+        ],
+        source: [2, 3],
+        dest: [5, 7]
+    };
+    // var code = `function solveMaze(map, sx, sy, tx, ty) {
+    //     report("left");
+    //     report("right");
+    //     report("up");
+    //     report("down");
+    //     report("solved");
+    // }
+    // `;  // use report to tell the computer what to do now
+    // document.getElementById("code").value = code;
+    /******** END OF MOCK *********/
+    var outputQueue = [];
+    function report(s) {
+        outputQueue.push(s);
+    }
+    viewConstructor = function () {
+        var c = document.getElementById("myCanvas");
+        var ctx = c.getContext("2d");
+        var grid_width, grid_height;
+        this.repaint = function (width, height, data, sx, sy, tx, ty) {
+            c.height = c.height;  // reset height to clear canvas
+            grid_width = 600 / (width - 1);  // reduce one for border cell
+            grid_height = 600 / (height - 1);
+            for (var i = 0; i < height; ++i)
+                for (var j = 0; j < width; ++j) {
+                    if (data[i][j * 2]) {
+                        // there is a line above the cell
+                        ctx.moveTo(j * grid_width, i * grid_height);
+                        ctx.lineTo((j + 1) * grid_width, i * grid_height);
+                    } if (data[i][j * 2 + 1]) {
+                        // there is a line on the left of the cell
+                        ctx.moveTo(j * grid_width, i * grid_height);
+                        ctx.lineTo(j * grid_width, (i + 1) * grid_height);
+                    }
+                }
+            ctx.stroke();
+            this.paintCircle(sx, sy, "#34E749");
+            this.paintCircle(tx, ty, "#3494E7");
+        };
+        this.paintCircle = function (j, i, color) {
+            ctx.strokeStyle = color;
+            var grd = ctx.createRadialGradient(grid_width / 2 + grid_width * i, grid_height * j + grid_height / 2, grid_width / 2, grid_width / 2 + grid_width * i, grid_height * j + grid_height / 2, 0);
+            grd.addColorStop(0, color);
+            grd.addColorStop(1, "white");
+            ctx.fillStyle = grd;
+            ctx.beginPath();
+            ctx.arc(grid_width / 2 + grid_width * i, grid_height * j + grid_height / 2, grid_width / 2, 0, 2 * Math.PI);
+            ctx.fill();
+            ctx.stroke();
+        };
+    };
+    controllerConstructor = function () {
+        this.getRandomNum = function (Min, Max) {
+            var Range = Max - Min;
+            var Rand = Math.random();
+            return (Min + Math.round(Rand * Range));
+        };
+        this.repaint = function () {
+            // repaint wrapper
+            this.view.repaint(this.width, this.height, this.data, this.sx, this.sy, this.tx, this.ty);
+        }
+        this.initMap = function (view, mockData, source, dest) {
+            this.view = view;
+            this.data = mockData;
+            this.width = mockData[0].length / 2;
+            this.height = mockData.length;
+            this.sx = source[0]; this.sy = source[1];
+            this.tx = dest[0]; this.ty = dest[1];
+            this.repaint();
+        };
+        this.run = function () {
+            if (this.hasOwnProperty("timer"))
+                clearTimeout(this.timer);  // clear previous timeout
+            var cd = document.getElementById("code").value;
+            var call = '\n\nsolveMaze(this.data, this.sx, this.sy, this.tx, this.ty);';
+            eval(cd + call);
+            console.log(outputQueue);
+        };
+        this.shiftResult = function () {
+            if (outputQueue.length > 0) {
+                var token = outputQueue.shift();
+                outputText.value += token + "\n";
+                if (token === "left") {
+                    // TODO: judge legal
+                    this.sy -= 1;
+                } else if (token === "right") {
+                    this.sy += 1;
+                } else if (token === "up") {
+                    this.sx -= 1;
+                } else if (token === "down") {
+                    this.sx += 1;
+                } else if (token === "solved") {
+                    // TODO: ???
+                } else if (token === "gg") {
+                    // ???????????
+                }
+                this.repaint();
+                setTimeout(function () {
+                    this.shiftResult();
+                }.bind(this), 500);
+            }
+        };
+        this.displayResult = function () {
+            // wrapper
+            outputText.value = "";
+            setTimeout(function () {
+                this.shiftResult();
+            }.bind(this), 500);
+        };
+    };
+    var view = new viewConstructor();
+    var controller = new controllerConstructor();
+    controller.initMap(view, mockData.map, mockData.source, mockData.dest);
+    var submitBtn = document.getElementById("submit");
+    var outputText = document.getElementById("output");
+    submitBtn.onclick = function (event) {
+        controller.run();
+        controller.displayResult();
+    }
+</script>
+</body>
+</html>

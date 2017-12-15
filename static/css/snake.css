@@ -1,0 +1,56 @@
+.container {
+	text-align: center;
+}
+.row {
+	padding: 1em;
+}
+div#snakepaper {
+    height: 28em;
+    padding: 2em;;
+}
+textarea {
+	resize: none;
+}
+
+
+tr {
+    border: 1px solid black;
+}
+td {
+    border: 0;
+    width: 100px;
+}​
+
+table{
+	border-collapse:collapse;
+	overflow: hidden;
+	border:1px solid #ddd;
+	margin:10px auto 10px auto;
+}
+td{
+	display: table-cell;
+	width:20px;
+	height:20px;
+	background: #fff;
+	border:1px #eeeeee solid;
+}
+.snake{
+	background: #3388ee;
+}
+.notsnake{
+	background: #fff;
+}
+.food{
+	background: #33aa33;
+}
+.snake_head{
+	background: #dd4444;
+}
+.notice{
+	width:450px;
+	text-align: center;
+	margin:50px auto;
+	color:#fff;
+	font-size: 14px;
+}
+

@@ -1,0 +1,138 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>BlackBlank-A platform to display your algorithms</title>
+  <link rel="stylesheet" href="public/lib/bootstrap.min.css"/>
+    <link rel="stylesheet" href="public/BlackBlank.css"/>
+  <meta name="description" content="A platform to display your algorithms"/>
+    <meta property="og:title" content="Algorithm Visualizer"/>
+    <meta property="og:description" content="A platform to display your algorithms"/>
+    <meta property="og:image" content="img/image.png"/>
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon"/>
+
+</head>
+<body>
+<!--加载条-->
+<div id="loading-slider">
+    <div class="line"></div>
+    <div class="break dot1"></div>
+    <div class="break dot2"></div>
+    <div class="break dot3"></div>
+</div>
+<!--顶端导航-->
+<nav class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <button class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a href="index.html" class="navbar-brand">Black Blank</a>
+        </div>
+        <!--小屏幕导航按钮和logo-->
+        <!--导航-->
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+         <li class="dropdown">
+                <a id="languageSelect" href="#" class="dropdown-toggle" data-toggle="dropdown">
+          Language: javascript
+                    <b class="caret"></b>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a id="lang_js" href="#">javascript</a></li>
+                    <li><a id="lang_cpp" href="#">c++</a></li>
+                    <li><a id="lang_java" href="#">java</a></li>
+                    <li><a id="lang_python" href="#">python</a></li>
+                </ul>
+            </li>
+        <li><a id="btn_run"><span class="glyphicon glyphicon-play"></span>&nbsp;&nbsp;Run</a></li>
+        <li><a id="btn_prev"><span class="glyphicon glyphicon-chevron-left"></span>&nbsp;&nbsp;Prev</a></li>
+        <li><a id="btn_pause"><span class="glyphicon glyphicon-pause"></span>&nbsp;&nbsp;Pause</a></li>
+                <li><a id="btn_next"><span class="glyphicon glyphicon-chevron-right"></span>&nbsp;&nbsp;Next</a></li>
+        <li><a id="btn_fullscreen"><span class="glyphicon glyphicon-fullscreen"></span>&nbsp;&nbsp;Fullscreen</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="workspace">
+    <div class="viewer_container">
+        <section class="tab_container">
+            <div class="tab module_container" id="tab_module">
+            </div>
+        </section>
+    </div>
+    <div class="editor_container">
+        <section id="data_container" class="data_container">
+            <pre id="data"></pre>
+        </section>
+        <section id="code_container" class="code_container">
+            <pre id="code"></pre>
+        </section>
+    </div>
+  <div id = "bottom-bar"> </div>
+</div>
+<div class="toast_container">
+</div>
+<a class="github-fork-ribbon left-bottom" href="https://github.com/Cardinal2376/BlackBlank"
+       title="Fork me on GitHub">Fork me on GitHub</a><!--底部导航-->
+<nav class="navbar navbar-default navbar-fixed-bottom">
+    <div class="container">
+        <!--小屏幕导航按钮和logo-->
+        <div class="navbar-header">
+            <ul class="nav navbar-nav navbar-left">
+        <li><p class="navbar-text">Shared by:</p></li>
+        <li><p id="authorname" class="navbar-text">Cardinal</p></li>
+            </ul>
+        </div>
+        <!--导航-->
+    
+    <div>
+      <ul class="nav navbar-nav navbar-right">
+        <li><p class="navbar-text">输入作者名字后分享：</p></li>
+          <li><form class="navbar-form navbar-right" role="input">
+            <div class="form-group">
+              <input id="name-input" type="text" class="form-control" placeholder="Your Name">
+            </div>
+          </form></li>
+        <li><a id="btn_share"><span class="glyphicon glyphicon-share-alt"></span>&nbsp;&nbsp;Share</a></li>
+            </ul>
+    </div>
+    </div>
+</nav>
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Modal title</h4>
+      </div>
+      <div class="modal-body">
+        作者名字：<div id="author"></div>
+    生成的链接:<div id="shared-link"></div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        <button type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="public/bootstrap.min.js"></script>
+<script src="public/lib/showdown.min.js"></script>
+<script src="public/lib/ace/ace.js"></script>
+<script src="public/lib/ace/ext-language_tools.js"></script>
+<script src="public/lib/babel.min.js"></script>
+<script src="public/lib/sigma/sigma.min.js"></script>
+<script src="public/lib/sigma/plugins/sigma.plugins.dragNodes.min.js"></script>
+<script src="public/lib/Chart-2.1.3.min.js"></script>
+<script src="public/jquery.nicescroll.min.js"></script>
+<script src="public/BlackBlank.js"></script>
+</body>
+</html>
